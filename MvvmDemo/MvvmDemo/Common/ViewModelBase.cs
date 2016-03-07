@@ -15,7 +15,7 @@ namespace MvvmDemo.Common
         /// 属性变更通知
         /// </summary>
         /// <param name="propertyName">属性名</param>
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)
             {

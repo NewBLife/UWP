@@ -7,7 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
+        <TextBlock Text="用户ID：" Grid.Row="0" Grid.Column="0" Width="100" />
+        <TextBlock Text="用户名：" Grid.Row="1" Grid.Column="0" Width="100" />
+        <TextBox x:Name="txtUserID" Grid.Row="0" Grid.Column="1" Width="150" Text="{x:Bind VM.UserId,Mode=OneWay}" />
+        <TextBlock x:Name="txbUserName" Grid.Row="1" Grid.Column="1" Width="150" Text="{x:Bind VM.UserName,Mode=OneWay}"  />
+        <Button x:Name="btnLogin" Content="Login" Grid.Row="2" Grid.ColumnSpan="2" Width="150" HorizontalAlignment="Center"
+                Command="{x:Bind VM.LoginCommand,Mode=OneWay}"
+                CommandParameter="{Binding Text,ElementName=txtUserID,Mode=OneWay}"/>
     </Grid>
 </Page>

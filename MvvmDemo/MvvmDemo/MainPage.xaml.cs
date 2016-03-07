@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmDemo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,12 @@ namespace MvvmDemo
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public MainViewModel VM =>new MainViewModel();
+
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = VM;    
         }
     }
 }
