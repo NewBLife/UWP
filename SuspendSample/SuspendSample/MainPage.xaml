@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <TextBox x:Name="txtInput" Width="200" Height="100" />
     </Grid>
 </Page>

@@ -48,6 +48,9 @@ namespace SuspendSample
                 // 创建要充当导航上下文的框架，并导航到第一页
                 rootFrame = new Frame();
 
+                //将框架与 SuspensionManager 键关联                                
+                SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
+
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
