@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="ITNew.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITNew"
+    xmlns:localData="using:ITNew.Data">
+
+    <Application.Resources>
+
+        <!-- 应用程序特定的资源-->
+
+        <x:String x:Key="AppName">ITNew</x:String>
+
+    </Application.Resources>
+</Application>
