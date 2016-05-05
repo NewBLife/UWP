@@ -1,16 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using SuspensionManagerDemo.Model;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UWPDev.Common.Interface;
 
 namespace SuspensionManagerDemo.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IPageViewModelBase
     {
         public const string ClockPropertyName = "Clock";
         public const string WelcomeTitlePropertyName = "WelcomeTitle";
@@ -160,6 +162,31 @@ namespace SuspensionManagerDemo.ViewModel
                 // Report error here
                 WelcomeTitle = ex.Message;
             }
+        }
+        public void SavingState()
+        {
+            // 注销事件
+            //SystemNavigationManager.GetForCurrentView().BackRequested -= OnBackRequested
+        }
+
+        public void LoadState(object navParameter, Dictionary<string, object> state)
+        {
+            if (state != null)
+            {
+                WelcomeTitle = state[nameof(WelcomeTitle)].ToString();
+            }
+            // 注册事件
+            //SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested
+        }
+
+        public void SaveState(Dictionary<string, object> state)
+        {
+            state[nameof(WelcomeTitle)] = WelcomeTitle;
+        }
+
+        public T RestoreStateItem<T>(Dictionary<string, object> state, string stateKey, T defaultValue = default(T))
+        {
+            throw new NotImplementedException();
         }
     }
 }

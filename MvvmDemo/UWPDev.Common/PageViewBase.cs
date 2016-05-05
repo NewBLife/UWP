@@ -8,6 +8,7 @@
 // ***********************************************************************
 using System;
 using System.Collections.Generic;
+using UWPDev.Common.Interface;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -21,9 +22,9 @@ namespace UWPDev.Common
         /// <summary>
         /// 页面ViewModel基类对象
         /// </summary>
-        private PageViewModelBase PageViewModel
+        private IPageViewModelBase PageViewModel
         {
-            get { return this.DataContext as PageViewModelBase; }
+            get { return this.DataContext as IPageViewModelBase; }
         }
 
         public PageViewBase()
