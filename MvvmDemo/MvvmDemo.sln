@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWPDev.Common", "UWPDev.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnNavigatingFromDemo", "OnNavigatingFromDemo\OnNavigatingFromDemo.csproj", "{A6ACC469-CA0D-4A93-900C-2FFB7302F70E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileOperationDemo", "FileOperationDemo\FileOperationDemo.csproj", "{278789CF-6075-4726-AACD-F4E94A800340}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,26 @@ Global
 		{A6ACC469-CA0D-4A93-900C-2FFB7302F70E}.Release|x86.ActiveCfg = Release|x86
 		{A6ACC469-CA0D-4A93-900C-2FFB7302F70E}.Release|x86.Build.0 = Release|x86
 		{A6ACC469-CA0D-4A93-900C-2FFB7302F70E}.Release|x86.Deploy.0 = Release|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|ARM.ActiveCfg = Debug|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|ARM.Build.0 = Debug|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|ARM.Deploy.0 = Debug|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x64.ActiveCfg = Debug|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x64.Build.0 = Debug|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x64.Deploy.0 = Debug|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x86.ActiveCfg = Debug|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x86.Build.0 = Debug|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Debug|x86.Deploy.0 = Debug|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|Any CPU.ActiveCfg = Release|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|ARM.ActiveCfg = Release|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|ARM.Build.0 = Release|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|ARM.Deploy.0 = Release|ARM
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x64.ActiveCfg = Release|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x64.Build.0 = Release|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x64.Deploy.0 = Release|x64
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x86.ActiveCfg = Release|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x86.Build.0 = Release|x86
+		{278789CF-6075-4726-AACD-F4E94A800340}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,125 @@
+<Page x:Class="FileOperationDemo.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:data="using:FileOperationDemo.Models"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:FileOperationDemo.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:FileOperationDemo.ViewModels" mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for narrow view  -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for normal view  -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for wide view  -->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <controls:PageHeader x:Name="pageHeader" 
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Main Page">
+            <!--  primary commands-->
+            <controls:PageHeader.PrimaryCommands>
+                <AppBarButton Icon="Add" Label="AddFile" Command="{x:Bind ViewModel.AddFile,Mode=OneWay}"/>
+                <AppBarButton Icon="WebCam" Label="Camera" Command="{x:Bind ViewModel.TakePhoto,Mode=OneWay}"/>
+            </controls:PageHeader.PrimaryCommands>
+
+            <!--  secondary commands  -->
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>
+
+        </controls:PageHeader>
+
+        <ScrollViewer x:Name="slvContent"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollMode="Enabled"
+                      RelativePanel.AlignLeftWith="pageHeader"
+                      RelativePanel.AlignRightWithPanel="True"
+                      RelativePanel.Below="pageHeader">
+            <ItemsControl x:Name="lsvFiles"
+                  ItemsSource="{x:Bind ViewModel.FileList,Mode=OneWay}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollMode="Disabled"
+                  ScrollViewer.VerticalScrollMode="Enabled">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="data:FileInfo">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <HyperlinkButton Grid.Column="0" 
+                                             HorizontalAlignment="Left"
+                                             Command="{Binding DataContext.ShowFile,ElementName=lsvFiles,Mode=OneWay}"
+                                             CommandParameter="{Binding}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="{x:Bind File.Name,Mode=OneWay}"/>
+                                    <Image Grid.Row="1" 
+                                           Source="{Binding FileThumbnail,Mode=OneWay}" 
+                                           Stretch="None"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
+                                </Grid>
+                            </HyperlinkButton>
+                            <Button Grid.Column="1"
+                                    Content="Delete"
+                                    VerticalAlignment="Bottom"
+                                    Command="{Binding DataContext.DeleteFile,ElementName=lsvFiles,Mode=OneWay}"
+                                    CommandParameter="{Binding}"
+                                    Width="80"
+                                    Height="30"/>
+                            <Border Grid.ColumnSpan="2" 
+                                    BorderThickness="1"
+                                    BorderBrush="Blue"
+                                    VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </ScrollViewer>
+
+    </RelativePanel>
+</Page>
+
