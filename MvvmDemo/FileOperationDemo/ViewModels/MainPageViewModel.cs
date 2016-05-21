@@ -9,6 +9,7 @@ using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Template10.Services.SerializationService;
 using Windows.Media.Capture;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Navigation;
@@ -60,6 +61,7 @@ namespace FileOperationDemo.ViewModels
         public DelegateCommand TakePhoto => new DelegateCommand(
                     async () =>
                     {
+                        // 拍照
                         CameraCaptureUI captureUI = new CameraCaptureUI();
                         captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Png;
                         captureUI.PhotoSettings.AllowCropping = false;
@@ -112,6 +114,11 @@ namespace FileOperationDemo.ViewModels
                 {
                     FileList = SerializationService.Json.Deserialize<ObservableCollection<FileInfo>>(suspensionState[nameof(FileList)]?.ToString());
                 }
+                else
+                {
+                    // 清理临时数据
+                    await ApplicationData.Current.ClearAsync(ApplicationDataLocality.Temporary);
+                }
 
                 // 注册系统返回按钮事件
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
@@ -133,6 +140,8 @@ namespace FileOperationDemo.ViewModels
                 {
                     suspensionState[nameof(FileList)] = SerializationService.Json.Serialize(FileList);
                 }
+                // 清理临时数据
+                await ApplicationData.Current.ClearAsync(ApplicationDataLocality.Temporary);
                 await Task.CompletedTask;
             }
             catch (Exception ex)
@@ -145,9 +154,18 @@ namespace FileOperationDemo.ViewModels
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
         {
-            args.Cancel = false;
-            // 注销系统返回按钮事件
-            SystemNavigationManager.GetForCurrentView().BackRequested -= OnBackRequested;
+            try
+            {
+                args.Cancel = false;
+                // 注销系统返回按钮事件
+                SystemNavigationManager.GetForCurrentView().BackRequested -= OnBackRequested;
+                // 清理临时数据
+                await ApplicationData.Current.ClearAsync(ApplicationDataLocality.Temporary);
+            }
+            catch
+            {
+                // 临时文件删除异常时不做任何处理
+            }
             await Task.CompletedTask;
         }
 
