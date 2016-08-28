@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="ListDemo.Views.FlipViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ListDemo.Views"
+    xmlns:data="using:ListDemo.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="goBack" Content="Back" Click="goBack_Click" />
+        <TextBlock Grid.Row="0" Text="FlipView" HorizontalAlignment="Center"/>
+        <FlipView Grid.Row="1" x:Name="pageList">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="data:PageItem" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="{x:Bind Title,Mode=OneWay}" />
+                        <Image Grid.Row="1" Source="{x:Bind ImgUrl,Mode=OneWay}" />
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </Grid>
+</Page>
